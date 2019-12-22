@@ -18,3 +18,5 @@
 
 * **`Spanning_tree.html`**: an **html** file showing the second task on a real map. 
 To be able to view it, is necessary to click on it, then click on *raw* and press on the keyboard *ctrl+s* in order to save it and be able to open it.
+
+* **`calmapv1.png`**: A **png** image file showing the visualization of the entire map following Question 4.
