@@ -11,6 +11,26 @@ from tqdm import tqdm_notebook
 import matplotlib.pyplot as plt
 import queue as q
 import numpy as np
+import json
+import collections
+import pandas as pd 
+import numpy as np
+from io import StringIO 
+import seaborn as sns
+import networkx as nx
+import matplotlib.pyplot as plt
+import heapq
+from shapely.geometry import Point, Polygon
+import json, string
+import requests
+import geocoder
+from folium import Map, Marker, GeoJson, LayerControl
+from ediblepickle import checkpoint
+from tqdm import tqdm_notebook
+import os 
+import folium
+from folium import plugins
+from collections import defaultdict
 
 
 # ## Preparation the data vefore starting to do the graph
@@ -295,31 +315,20 @@ def draw_path(g,path,p):
     plt.show()
 
 
-# ## Question 2
-
-# In[ ]:
 
 
-import json
-import collections
-import pandas as pd 
-import numpy as np
-from io import StringIO 
-import seaborn as sns
-import networkx as nx
-import matplotlib.pyplot as plt
-import heapq
-from shapely.geometry import Point, Polygon
-import json, string
-import requests
-import geocoder
-from folium import Map, Marker, GeoJson, LayerControl
-from ediblepickle import checkpoint
-from tqdm import tqdm_notebook
-import os 
-import folium
-from folium import plugins
-from collections import defaultdict
+
+
+# TASK 2: Backend + Frontend
+
+# BACKEND
+
+### Functionality 2 - Find the smartest Network!
+#### It takes in input:
+
+#### 1. A set of nodes v = {v_1, ..., v_n}
+#### 2. One of the following distances function: t(x,y), d(x,y) or network distance (all edges  have weight equal to 1).
+
 
 coordinates = Node_data
 distance = Distance_data
@@ -331,6 +340,7 @@ traveltime.rename({'t(Id_Node1, Id_Node2)': 'TimeTravel'}, axis=1,inplace=True)
 # coordinates['Longitude']=coordinates['Longitude']/10**6
 
 
+# Below are defined three methods based on the three different **distance** (*spatial distance* $d(x,y)$, *time distance* $t(x,y)$ , *network distance* $n(x,y)=1$) that returns the set of roads (edges) that enable the user to visit all the places.
 # In[ ]:
 
 
@@ -389,6 +399,58 @@ def spanning_tree_distance():
                 if to_next not in visited:
                     heapq.heappush(edges, (dist, to, to_next)) #Push the value item into the heap, maintaining the heap invariant.
     return mst
+
+# Below there is a *user interface* where is possible to chose *how many* and *which* nodes consider and the type of *distance* desired.
+from collections import defaultdict
+nodini=[]
+print('Choose how many nodes consider for the spanning tree')
+n=int(input())
+print('Choose which nodes consider')
+for i in range(0,n):
+    nodini.append(int(input()))
+print('Choose which method use for find the smartest Network:Time, Weight, Distance. p.s. If you are not interest just write "quit"') 
+
+a=input().lower()
+if a=='time':
+    b=dict(spanning_tree_time())
+elif a=='weight':
+    b=dict(spanning_tree_weight())
+
+elif a=='distance':
+    b=dict(spanning_tree_distance())
+elif a=='quit':
+    print(':(')
+
+else:
+    print('What did you say? please repeat!')
+
+
+
+# FRONTEND
+
+### Visualization 2 - Visualize the smartest Network!
+### Once the user runs Functionality 2, below is showed in output a complete map that contains: the input nodes and all the edges that connect them.
+
+#### Below is defined the dataframe used to make the visualization: *df_final*
+
+Values=[] #to append the values find in the functionality 2 and find the result inside the dictionary
+for i in range(len(nodini)):
+
+    try:
+        Values.append(b[nodini[i]])
+    except:
+          continue
+
+lista = []
+for i in range(len(Values)):
+    lista.append(result_spanning[result_spanning['Connection']==Values[i]])
+
+result_spanning = pd.concat(lista)
+
+df_final = pd.merge(result_spanning, coordinates, on = 'Id_Node', how = 'inner')
+
+#### Below the final visualization! 
+#### The package used is *folium*, it allows to represent on real map the coordinates of each node.
 
 def visualization_spanning_tree():    
 #built the map centralized on the median of the coordinates  
