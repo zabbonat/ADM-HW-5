@@ -10,9 +10,9 @@
 
 * **`main.py`**: a Python script which contains both *backend* and *frontend* tasks. The order of the file is given as follows:
   1. **Task 1** contains functions for *Functionality 1 and Visualization 1..* 
-  2. **Task 3** contains functions for *Functionality 1 and Visualization 3.* 
-  3. **Task 2** contains functions for *Functionality 1 and Visualization 2.* 
-  4. **Task 4** contains functions for *Functionality 1 and Visualization 4.* 
+  2. **Task 3** contains functions for *Functionality 3 and Visualization 3.* 
+  3. **Task 2** contains functions for *Functionality 2 and Visualization 2.* 
+  4. **Task 4** contains functions for *Functionality 4 and Visualization 4.* 
   
 * **`main_ipynb.ipynb`**: a Jupyter Notebook showing the results obtained from the execution of the **`main.py`**.
 
