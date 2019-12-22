@@ -1,7 +1,7 @@
 # ADM HW 5
-# Group 28.
+# Group 28
 
-### The group is composed by 
+### The group is composed by:
 ### 1. Lev Telyatnikov
 ### 2. Diletta Abbonato
 ### 3. Marco Di Ciò
