@@ -81,7 +81,7 @@ def dictionary(distance):
 
 # In[ ]:
 
-
+dictionary(distance)
 d = np.load('Graph_dict.npy',allow_pickle='TRUE').item() # load the nested dict
 
 
