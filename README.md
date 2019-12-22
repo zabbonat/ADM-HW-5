@@ -9,10 +9,10 @@
 #### The content of the repository is made up of the following files:
 
 * **`main.py`**: a Python script which contains both *backend* and *frontend* tasks. The order of the file is given as follows:
-  1. **Task 1** *backend + frontend.* 
-  2. **Task 3** *backend + frontend.* 
-  3. **Task 2** *backend + frontend.* 
-  4. **Task 4** *backend + frontend.* 
+  1. **Task 1** *Functionality 1 and Visualization 1..* 
+  2. **Task 3** *Functionality 1 and Visualization 3.* 
+  3. **Task 2** *Functionality 1 and Visualization 2.* 
+  4. **Task 4** *Functionality 1 and Visualization 4.* 
   
 * **`main_ipynb.ipynb`**: a Jupyter Notebook showing the results obtained from the execution of the **`main.py`**.
 
